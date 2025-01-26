@@ -1,0 +1,29 @@
+.date {
+  display: flex;
+  flex-direction: column;
+  color: rgba(62, 140, 255, 1);
+  width: 56px;
+
+  .month {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 800;
+    background-color: rgba(62, 140, 255, 0.25);
+    width: 56px;
+    height: 16px;
+    border-radius: 8px 8px 0px 0px;
+  }
+
+  .day {
+    font-size: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    background-color: rgba(62, 140, 255, 0.1);
+    height: 32px;
+    gap: 10px;
+    border-radius: 0px 0px 8px 8px;
+    opacity: 0px;
+  }
+}
