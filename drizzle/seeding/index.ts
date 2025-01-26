@@ -1,4 +1,4 @@
-import { RoomingListByEvent } from "@/src/rooming-list-management/entities/models/rooming-list";
+import { RoomingListWithEvent } from "@/src/rooming-list-management/entities/models/rooming-list";
 import { db } from "../db";
 import {
   hotel,
@@ -14,7 +14,7 @@ import { RoomingListBookings } from "@/src/rooming-list-management/entities/mode
 import { eq } from "drizzle-orm";
 
 type SeedData = Array<
-  RoomingListByEvent & {
+  RoomingListWithEvent & {
     drl_rooming_list_bookings: RoomingListBookings[];
   }
 >;

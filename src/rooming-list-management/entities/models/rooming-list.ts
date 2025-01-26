@@ -14,7 +14,7 @@ export const roomingListSchema = z.object({
 
 export type RoomingList = z.infer<typeof roomingListSchema>;
 
-export type RoomingListByEvent = RoomingList & {
+export type RoomingListWithEvent = RoomingList & {
   bookings: number;
   drl_rfp: Rfp;
 };
