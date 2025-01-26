@@ -2,8 +2,8 @@ import React, { FC } from "react";
 import styles from "./styles.module.css";
 import { DateBadge } from "@/components/atoms/date-badge";
 import { Button } from "@/components/atoms/button";
-import document from "../../../../public/icons/document.svg";
-import calendar from "../../../../public/icons/calendar.svg";
+import document from "../../../public/icons/document.svg";
+import calendar from "../../../public/icons/calendar.svg";
 import Image from "next/image";
 
 type EventCardProps = {

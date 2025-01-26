@@ -2,7 +2,7 @@
 
 import React, { FC, useState } from "react";
 import { Button } from "@/components/atoms/button";
-import settings from "../../../../public/icons/settings.svg";
+import settings from "../../../public/icons/settings.svg";
 import styles from "./styles.module.css";
 import { Checkbox } from "@/components/atoms/checkbox";
 import clsx from "clsx";

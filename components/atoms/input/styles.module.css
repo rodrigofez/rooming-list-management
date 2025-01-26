@@ -1,6 +1,6 @@
 .input {
   input {
-    background-color: var(--foreground);
+    background-color: var(--surface);
     border: var(--border);
     height: 48px;
     border-radius: 8px;
@@ -31,11 +31,11 @@
 }
 
 .noIcon {
-    .iconButton{
-        display: none;
-    }
+  .iconButton {
+    display: none;
+  }
 
-    input {
-        padding-left: 16px;
-    }
+  input {
+    padding-left: 16px;
+  }
 }
