@@ -1,17 +1,25 @@
+import { RoomingListByEvent } from "@/src/rooming-list-management/entities/models/rooming-list";
 import { db } from "../db";
 import {
-  roomingList,
-  roomingListBookings,
-  rfp,
   hotel,
   platform,
+  rfp,
+  roomingList,
+  roomingListBookings,
   status,
 } from "../schema";
 import test_data from "./test-data.json";
 
+import { RoomingListBookings } from "@/src/rooming-list-management/entities/models/rooming-list-bookings";
 import { eq } from "drizzle-orm";
 
-const seedData = async (jsonData) => {
+type SeedData = Array<
+  RoomingListByEvent & {
+    drl_rooming_list_bookings: RoomingListBookings[];
+  }
+>;
+
+const seedData = async (jsonData: SeedData) => {
   try {
     const statusData = await db.select().from(status).where(eq(status.id, 1));
 
@@ -107,5 +115,5 @@ const seedData = async (jsonData) => {
 };
 
 (async () => {
-  await seedData(test_data);
+  await seedData(test_data as unknown as SeedData);
 })();

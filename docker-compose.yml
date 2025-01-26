@@ -17,3 +17,14 @@ services:
       - "5433:80"
     depends_on:
       - postgres
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:latest
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: root@admin.com
+      PGADMIN_DEFAULT_PASSWORD: postgres
+    ports:
+      - "8080:80"
+    depends_on:
+      - postgres
