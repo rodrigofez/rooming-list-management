@@ -2,16 +2,13 @@ import React, { FC } from "react";
 import styles from "./styles.module.css";
 
 type DateProps = {
-  date: string;
+  date: Date;
 };
 
 export const DateBadge: FC<DateProps> = ({ date }) => {
-  const parsedDate = new Date(date);
-
   const month =
-    parsedDate.toLocaleString("default", { month: "short" }).toUpperCase() ??
-    "INV";
-  const day = parsedDate.getDay() ?? "00";
+    date.toLocaleString("default", { month: "short" }).toUpperCase() ?? "INV";
+  const day = date.getDay() ?? "00";
 
   return (
     <div className={styles.date}>

@@ -1,0 +1,73 @@
+.cardContainer {
+  background-color: var(--surface);
+  border: var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  min-width: 400px;
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 12px;
+    align-items: center;
+    .info {
+      .title {
+        font-weight: 700;
+        font-size: 16px;
+        text-overflow: ellipsis;
+        max-width: 260px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+      }
+
+      .data {
+        color: rgba(20, 20, 22, 0.8);
+        font-size: 14px;
+        .name {
+          font-weight: 500;
+        }
+        .description {
+          font-weight: 800;
+        }
+      }
+    }
+
+    .mainDate {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+
+      .label {
+        color: var(--foreground-light);
+        font-size: 12px;
+        font-weight: 500;
+        text-wrap: nowrap;
+      }
+    }
+  }
+  .dateRange {
+    margin-top: 12px;
+    margin-bottom: 16px;
+    color: rgba(119, 126, 144, 1);
+    font-size: 12px;
+    font-weight: 400;
+    display: flex;
+    gap: 6px;
+
+    img {
+      margin-top: 1px;
+    }
+  }
+
+  .actions {
+    display: flex;
+    gap: 8px;
+    align-items: stretch;
+  }
+}
