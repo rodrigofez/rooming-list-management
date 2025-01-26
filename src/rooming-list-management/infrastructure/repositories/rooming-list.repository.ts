@@ -53,6 +53,7 @@ export class RoomingListRepository implements IRoomingListRepository {
           rfp.event_name,
           rfp.event_internal_name,
           rfp.agreement_type,
+          rfp.agreement_path,
           rfp.event_start_date,
           rfp.event_end_date,
           roomingList.id,

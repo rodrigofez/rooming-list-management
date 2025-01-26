@@ -4,6 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "tsx ./drizzle/migrate.ts",
+    "db:migrate-local": "drizzle-kit migrate",
+    "db:seed": "npx tsx --env-file=.env ./drizzle/seeding/index.ts",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -17,6 +21,7 @@
     "postgres": "^3.4.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "ws": "^8.18.0",
     "zod": "^3.24.1"
   },
   "devDependencies": {

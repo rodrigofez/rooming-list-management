@@ -109,8 +109,9 @@ const seedData = async (jsonData: SeedData) => {
     }
 
     console.log("Data seeded successfully");
-  } catch (err: unknown) {
-    throw new Error(`seed already executed: ${err} `);
+  } catch (error: unknown) {
+    console.error("Error during seeding:", error);
+    process.exit(1);
   }
 };
 
