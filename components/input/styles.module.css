@@ -1,0 +1,41 @@
+.input {
+  input {
+    background-color: var(--foreground);
+    border: var(--border);
+    height: 48px;
+    border-radius: 8px;
+    padding: 10px;
+    padding-left: 54px;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--foreground);
+  }
+
+  input::placeholder {
+    color: var(--foreground-light);
+  }
+
+  .iconButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    margin: 4px;
+    border-radius: 8px;
+    padding: 4px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--background);
+    border: var(--border);
+  }
+}
+
+.noIcon {
+    .iconButton{
+        display: none;
+    }
+
+    input {
+        padding-left: 16px;
+    }
+}
