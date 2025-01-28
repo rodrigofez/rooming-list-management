@@ -2,9 +2,8 @@ import React, { FC } from "react";
 import styles from "./styles.module.css";
 import { DateBadge } from "@/components/atoms/date-badge";
 import { Button } from "@/components/atoms/button";
-import document from "../../../public/icons/document.svg";
-import calendar from "../../../public/icons/calendar.svg";
-import Image from "next/image";
+import { DocumentIcon } from "./document-icon";
+import { CalendarIcon } from "./calendar-icon";
 
 type EventCardProps = {
   name: string;
@@ -60,7 +59,7 @@ export const EventCard: FC<EventCardProps> = ({
         </div>
       </div>
       <div className={styles.dateRange}>
-        <Image src={calendar} alt="calendar icon"></Image> {dateRangeString}
+        <CalendarIcon /> {dateRangeString}
       </div>
       <div className={styles.actions}>
         <Button
@@ -70,7 +69,7 @@ export const EventCard: FC<EventCardProps> = ({
         />
         <Button
           variant="outline"
-          iconSrc={document}
+          icon={<DocumentIcon />}
           tooltip="Show Agreement as PDF"
         />
       </div>

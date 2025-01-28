@@ -1,7 +1,6 @@
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
 import styles from "./styles.module.css";
 import clsx from "clsx";
-import Image from "next/image";
 import "./styles.module.css";
 
 interface ButtonProps
@@ -11,16 +10,35 @@ interface ButtonProps
   > {
   variant?: "normal" | "outline" | "primary";
   dimension?: "small" | "normal" | "large";
-  iconSrc?: string;
+  icon?: ReactNode;
   title?: string;
   active?: boolean;
   tooltip?: string;
 }
 
+const SvgComponent = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={8}
+    height={8}
+    fill="none"
+    preserveAspectRatio="none"
+  >
+    <path
+      stroke="#00C2A6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={1.5}
+      d="M11 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM1 3h8M13 3h4M5 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM1 9h2M7 9h10M14 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM1 15h11M16 15h1"
+    />
+  </svg>
+);
+export default SvgComponent;
+
 export const Button: FC<ButtonProps> = ({
   variant = "normal",
   dimension = "normal",
-  iconSrc,
+  icon,
   title,
   active,
   tooltip,
@@ -40,7 +58,7 @@ export const Button: FC<ButtonProps> = ({
         {...props}
       >
         {title ? title : ""}
-        {iconSrc && <Image src={iconSrc} alt={"button icon"} />}
+        {icon && <div className={styles.svgContainer}>{icon}</div>}
         {tooltip && (
           <div role="tooltip" id="button-desc">
             {tooltip}

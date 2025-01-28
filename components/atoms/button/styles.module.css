@@ -13,7 +13,12 @@
   gap: 12px;
   justify-content: center;
 
-  img {
+  .svgContainer {
+    height: 24px;
+    width: 24px;
+  }
+
+  svg {
     height: 24px;
     width: 24px;
     padding: 0;
@@ -72,8 +77,8 @@
   height: 48px;
   padding: 0 20px;
 
-  img {
-    height: 16px;
-    width: 16px;
+  .svgContainer {
+    height: 18px;
+    width: 18px;
   }
 }

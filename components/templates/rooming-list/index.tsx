@@ -1,38 +1,18 @@
 import { Scrollable } from "@/components/atoms/scrollable";
 import { SubTitle } from "@/components/atoms/subtitile";
 import { EventCard } from "@/components/molecules/event-card";
-import { getRoomingLists } from "@/src/rooming-list-management/application/use-cases/getRoomingLists";
-import { RoomingListWithEvent } from "@/src/rooming-list-management/entities/models/rooming-list";
-import { RoomingListRepository } from "@/src/rooming-list-management/infrastructure/repositories/rooming-list.repository";
+import { RoomingListWithEvent } from "@/core/rooming-list-management/domain/entities/rooming-list";
 
 import styles from "./styles.module.css";
 
-const groupByEventName = (roomingLists: RoomingListWithEvent[]) => {
-  return roomingLists.reduce(
-    (acc: { [key: string]: RoomingListWithEvent[] }, roomingList) => {
-      acc[roomingList.drl_rfp.event_name] =
-        acc[roomingList.drl_rfp.event_name] || [];
-      acc[roomingList.drl_rfp.event_name].push(roomingList);
-      return acc;
-    },
-    {}
-  );
-};
-
 export const RoomingLists = async ({
-  query,
-  filters,
+  roomingLists,
 }: {
-  query: string;
-  filters: number[];
+  roomingLists: {
+    [key: string]: RoomingListWithEvent[];
+  };
 }) => {
-  const data = groupByEventName(
-    await getRoomingLists(new RoomingListRepository())(query, filters)
-  );
-
-  if (!data) return <div>error</div>;
-
-  return Object.entries(data).map(([event_name, roomingLists], i) => (
+  return Object.entries(roomingLists).map(([event_name, roomingLists], i) => (
     <section key={event_name} className={styles.roomingList}>
       <SubTitle variant={i % 2 == 0 ? "primary" : "secondary"}>
         {event_name}

@@ -1,28 +1,23 @@
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
 import styles from "./styles.module.css";
 import clsx from "clsx";
-import Image from "next/image";
 
 interface InputProps
   extends React.DetailedHTMLProps<
     React.InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   > {
-  iconSrc?: string;
+  icon?: ReactNode;
 }
 
-export const Input: FC<InputProps> = ({ iconSrc, ...props }) => {
+export const Input: FC<InputProps> = ({ icon, ...props }) => {
   return (
     <div
       className={clsx(styles.input, {
-        [styles.noIcon]: !iconSrc,
+        [styles.noIcon]: !icon,
       })}
     >
-      {iconSrc && (
-        <div className={styles.iconButton}>
-          <Image src={iconSrc} alt="input icon"></Image>
-        </div>
-      )}
+      {icon && <div className={styles.iconButton}>{icon}</div>}
       <input placeholder="Search" {...props} />
     </div>
   );
