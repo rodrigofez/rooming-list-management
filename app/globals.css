@@ -53,3 +53,16 @@ input {
     color-scheme: dark;
   }
 }
+
+[role="tooltip"] {
+  visibility: hidden;
+  position: absolute;
+  background-color: var(--background);
+  color: black;
+  box-shadow: 0px 4px 10px 0px #00000026;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: block;
+  text-wrap: nowrap;
+  bottom: 2em;
+}

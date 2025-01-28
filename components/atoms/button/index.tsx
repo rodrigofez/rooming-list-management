@@ -23,6 +23,7 @@ export const Button: FC<ButtonProps> = ({
   iconSrc,
   title,
   active,
+  tooltip,
   ...props
 }) => {
   return (
@@ -40,6 +41,11 @@ export const Button: FC<ButtonProps> = ({
       >
         {title ? title : ""}
         {iconSrc && <Image src={iconSrc} alt={"button icon"} />}
+        {tooltip && (
+          <div role="tooltip" id="button-desc">
+            {tooltip}
+          </div>
+        )}
       </button>
     </>
   );

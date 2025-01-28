@@ -21,6 +21,16 @@
   }
 }
 
+.button:hover,
+.button:focus {
+  position: relative;
+}
+
+.button:hover > [role="tooltip"],
+.button:focus > [role="tooltip"] {
+  visibility: visible;
+}
+
 .buttonActive {
   border: 1px solid var(--primary) !important;
 }
