@@ -1,4 +1,4 @@
-import { RoomingListWithEvent } from "@/src/rooming-list-management/entities/models/rooming-list";
+import { RoomingListWithEvent } from "@/core/rooming-list-management/domain/entities/rooming-list";
 import { db } from "../db";
 import {
   hotel,
@@ -10,7 +10,7 @@ import {
 } from "../schema";
 import test_data from "./test-data.json";
 
-import { RoomingListBookings } from "@/src/rooming-list-management/entities/models/rooming-list-bookings";
+import { RoomingListBookings } from "@/core/rooming-list-management/domain/entities/rooming-list-bookings";
 import { eq } from "drizzle-orm";
 
 type SeedData = Array<

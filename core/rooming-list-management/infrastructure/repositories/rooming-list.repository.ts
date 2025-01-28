@@ -1,14 +1,28 @@
 import { db } from "@/drizzle/db";
 import { rfp, roomingList, roomingListBookings } from "@/drizzle/schema";
-import { IRoomingListRepository } from "@/src/rooming-list-management/application/repositories/rooming-list.repository.interface";
-import { RoomingListWithEvent } from "@/src/rooming-list-management/entities/models/rooming-list";
-import { and, count, eq, ilike, inArray, max, min, or } from "drizzle-orm";
+import { IRoomingListRepository } from "@/core/rooming-list-management/domain/repositories/rooming-list.repository.interface";
+import { RoomingListWithEvent } from "@/core/rooming-list-management/domain/entities/rooming-list";
+import {
+  and,
+  count,
+  eq,
+  gte,
+  ilike,
+  inArray,
+  lte,
+  max,
+  min,
+  or,
+} from "drizzle-orm";
+import { Search } from "../../domain/entities/search";
 
 export class RoomingListRepository implements IRoomingListRepository {
-  async getRoomingLists(
-    query: string,
-    statusFilter: number[]
-  ): Promise<RoomingListWithEvent[]> {
+  async getRoomingLists({
+    query,
+    filters,
+    after,
+    before,
+  }: Search): Promise<RoomingListWithEvent[]> {
     try {
       return (await db
         .select({
@@ -46,9 +60,11 @@ export class RoomingListRepository implements IRoomingListRepository {
               ilike(rfp.event_internal_name, `%${query}%`),
               ilike(rfp.agreement_type, `%${query}%`)
             ),
-            statusFilter.length
-              ? inArray(roomingList.status_id, statusFilter)
-              : undefined
+            filters.length
+              ? inArray(roomingList.status_id, filters)
+              : undefined,
+            after ? gte(roomingList.cutoff_date, new Date(after)) : undefined,
+            before ? lte(roomingList.cutoff_date, new Date(before)) : undefined
           )
         )
         .groupBy(
