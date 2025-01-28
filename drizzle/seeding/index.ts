@@ -104,6 +104,7 @@ const seedData = async (jsonData: SeedData) => {
           check_out: checkOut,
           total_nights: totalNights,
           room_external_id: booking.room_code,
+          booking_date: new Date(booking.booking_date),
         });
       }
     }

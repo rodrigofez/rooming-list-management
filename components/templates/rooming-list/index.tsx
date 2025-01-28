@@ -57,8 +57,8 @@ export const RoomingLists = async ({
               label: "Cut-Off Date",
             }}
             dateRange={{
-              from: new Date(roomingList.drl_rfp.event_start_date),
-              to: new Date(roomingList.drl_rfp.event_end_date),
+              from: new Date(roomingList.min_booking_date),
+              to: new Date(roomingList.max_booking_date),
             }}
             primaryActionLabel={`View Bookings (${roomingList.bookings})`}
           />

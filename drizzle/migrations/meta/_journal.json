@@ -8,6 +8,20 @@
       "when": 1737907506410,
       "tag": "0000_lazy_doomsday",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1738035305605,
+      "tag": "0001_dark_karnak",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1738032543554,
+      "tag": "0002_bright_preak",
+      "breakpoints": true
     }
   ]
 }

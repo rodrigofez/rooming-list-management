@@ -1,0 +1,484 @@
+{
+  "id": "1a8be286-a6d2-48e2-b903-b3abfc1c3498",
+  "prevId": "144144d7-1b0e-4dc8-af66-60ca0f859082",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.DRL_Hotel": {
+      "name": "DRL_Hotel",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "connect_id": {
+          "name": "connect_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "chain": {
+          "name": "chain",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "zipcode": {
+          "name": "zipcode",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lng": {
+          "name": "lng",
+          "type": "double precision",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "DRL_Hotel_connect_id_unique": {
+          "name": "DRL_Hotel_connect_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "connect_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.DRL_Platform": {
+      "name": "DRL_Platform",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.DRL_Rfp": {
+      "name": "DRL_Rfp",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "rfp_launchpad_id": {
+          "name": "rfp_launchpad_id",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "event_name": {
+          "name": "event_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "event_internal_name": {
+          "name": "event_internal_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "event_start_date": {
+          "name": "event_start_date",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "event_end_date": {
+          "name": "event_end_date",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "agreement_type": {
+          "name": "agreement_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "agreement_path": {
+          "name": "agreement_path",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "DRL_Rfp_rfp_launchpad_id_unique": {
+          "name": "DRL_Rfp_rfp_launchpad_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "rfp_launchpad_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.DRL_Rooming_List": {
+      "name": "DRL_Rooming_List",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "rfp_id": {
+          "name": "rfp_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status_id": {
+          "name": "status_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "platform_id": {
+          "name": "platform_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hotel_id": {
+          "name": "hotel_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cutoff_date": {
+          "name": "cutoff_date",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "modified_at": {
+          "name": "modified_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "DRL_Rooming_List_rfp_id_DRL_Rfp_id_fk": {
+          "name": "DRL_Rooming_List_rfp_id_DRL_Rfp_id_fk",
+          "tableFrom": "DRL_Rooming_List",
+          "tableTo": "DRL_Rfp",
+          "columnsFrom": [
+            "rfp_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "DRL_Rooming_List_status_id_DRL_Status_id_fk": {
+          "name": "DRL_Rooming_List_status_id_DRL_Status_id_fk",
+          "tableFrom": "DRL_Rooming_List",
+          "tableTo": "DRL_Status",
+          "columnsFrom": [
+            "status_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "DRL_Rooming_List_platform_id_DRL_Platform_id_fk": {
+          "name": "DRL_Rooming_List_platform_id_DRL_Platform_id_fk",
+          "tableFrom": "DRL_Rooming_List",
+          "tableTo": "DRL_Platform",
+          "columnsFrom": [
+            "platform_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "DRL_Rooming_List_hotel_id_DRL_Hotel_id_fk": {
+          "name": "DRL_Rooming_List_hotel_id_DRL_Hotel_id_fk",
+          "tableFrom": "DRL_Rooming_List",
+          "tableTo": "DRL_Hotel",
+          "columnsFrom": [
+            "hotel_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.DRL_Rooming_List_Bookings": {
+      "name": "DRL_Rooming_List_Bookings",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "rooming_list_id": {
+          "name": "rooming_list_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hotel_confirmation_code": {
+          "name": "hotel_confirmation_code",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "booking_external_id": {
+          "name": "booking_external_id",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "primary_guest": {
+          "name": "primary_guest",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "roommates": {
+          "name": "roommates",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "guests": {
+          "name": "guests",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "hotel_name": {
+          "name": "hotel_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "room_name": {
+          "name": "room_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "check_in": {
+          "name": "check_in",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "check_out": {
+          "name": "check_out",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "total_nights": {
+          "name": "total_nights",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "booking_date": {
+          "name": "booking_date",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "order_id": {
+          "name": "order_id",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "notes": {
+          "name": "notes",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "crewfare_confirmation_code": {
+          "name": "crewfare_confirmation_code",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "room_external_id": {
+          "name": "room_external_id",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "DRL_Rooming_List_Bookings_rooming_list_id_DRL_Rooming_List_id_fk": {
+          "name": "DRL_Rooming_List_Bookings_rooming_list_id_DRL_Rooming_List_id_fk",
+          "tableFrom": "DRL_Rooming_List_Bookings",
+          "tableTo": "DRL_Rooming_List",
+          "columnsFrom": [
+            "rooming_list_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.DRL_Status": {
+      "name": "DRL_Status",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.DRL_user": {
+      "name": "DRL_user",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "hotel_id": {
+          "name": "hotel_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "DRL_user_hotel_id_DRL_Hotel_id_fk": {
+          "name": "DRL_user_hotel_id_DRL_Hotel_id_fk",
+          "tableFrom": "DRL_user",
+          "tableTo": "DRL_Hotel",
+          "columnsFrom": [
+            "hotel_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

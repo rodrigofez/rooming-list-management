@@ -17,4 +17,6 @@ export type RoomingList = z.infer<typeof roomingListSchema>;
 export type RoomingListWithEvent = RoomingList & {
   bookings: number;
   drl_rfp: Rfp;
+  min_booking_date: Date;
+  max_booking_date: Date;
 };

@@ -1,6 +1,7 @@
 import { relations } from "drizzle-orm";
 import {
   doublePrecision,
+  index,
   integer,
   pgTable,
   serial,
@@ -9,26 +10,33 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 
-export const roomingListBookings = pgTable("DRL_Rooming_List_Bookings", {
-  id: serial("id").primaryKey(),
-  rooming_list_id: integer("rooming_list_id")
-    .references(() => roomingList.id)
-    .notNull(),
-  hotel_confirmation_code: varchar("hotel_confirmation_code"),
-  booking_external_id: serial("booking_external_id"),
-  primary_guest: varchar("primary_guest"),
-  roommates: varchar("roommates"),
-  guests: integer("guests"),
-  hotel_name: varchar("hotel_name"),
-  room_name: varchar("room_name"),
-  check_in: timestamp("check_in").notNull(),
-  check_out: timestamp("check_out").notNull(),
-  total_nights: integer("total_nights"),
-  order_id: varchar("order_id"),
-  notes: varchar("notes"),
-  crewfare_confirmation_code: varchar("crewfare_confirmation_code"),
-  room_external_id: varchar("room_external_id"),
-});
+export const roomingListBookings = pgTable(
+  "DRL_Rooming_List_Bookings",
+  {
+    id: serial("id").primaryKey(),
+    rooming_list_id: integer("rooming_list_id")
+      .references(() => roomingList.id)
+      .notNull(),
+    hotel_confirmation_code: varchar("hotel_confirmation_code"),
+    booking_external_id: serial("booking_external_id"),
+    primary_guest: varchar("primary_guest"),
+    roommates: varchar("roommates"),
+    guests: integer("guests"),
+    hotel_name: varchar("hotel_name"),
+    room_name: varchar("room_name"),
+    check_in: timestamp("check_in").notNull(),
+    check_out: timestamp("check_out").notNull(),
+    total_nights: integer("total_nights"),
+    booking_date: timestamp("booking_date").notNull(),
+    order_id: varchar("order_id"),
+    notes: varchar("notes"),
+    crewfare_confirmation_code: varchar("crewfare_confirmation_code"),
+    room_external_id: varchar("room_external_id"),
+  },
+  (table) => [
+    index("idx_booking_date").on(table.rooming_list_id, table.booking_date),
+  ]
+);
 
 export const roomingList = pgTable("DRL_Rooming_List", {
   id: serial("id").primaryKey(),
