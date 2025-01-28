@@ -1,0 +1,6 @@
+.roomingList {
+  padding-bottom: 50px;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+}
