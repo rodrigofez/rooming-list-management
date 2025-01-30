@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "tsx ./drizzle/migrate.ts",
-    "db:migrate-local": "drizzle-kit migrate",
+    "db:migrate": "drizzle-kit migrate",
     "db:seed": "npx tsx --env-file=.env ./drizzle/seeding/index.ts",
     "build": "next build",
     "start": "next start",
