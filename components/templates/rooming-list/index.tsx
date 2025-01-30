@@ -4,6 +4,7 @@ import { EventCard } from "@/components/molecules/event-card";
 import { RoomingListWithEvent } from "@/core/rooming-list-management/domain/entities/rooming-list";
 
 import styles from "./styles.module.css";
+import { EmptyState } from "@/components/atoms/empty-state";
 
 export const RoomingLists = async ({
   roomingLists,
@@ -12,6 +13,8 @@ export const RoomingLists = async ({
     [key: string]: RoomingListWithEvent[];
   };
 }) => {
+  if (!Object.entries(roomingLists).length) return <EmptyState />;
+
   return Object.entries(roomingLists).map(([event_name, roomingLists], i) => (
     <section key={event_name} className={styles.roomingList}>
       <SubTitle variant={i % 2 == 0 ? "primary" : "secondary"}>

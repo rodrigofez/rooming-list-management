@@ -4,7 +4,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   padding-top: 32px;
-  padding-bottom: 24;
+  padding-bottom: 24px;
 }
 
 .searchbar input {
