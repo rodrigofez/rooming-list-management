@@ -1,20 +1,4 @@
 .input {
-  input {
-    background-color: var(--surface);
-    border: var(--border);
-    height: 48px;
-    border-radius: 8px;
-    padding: 10px;
-    padding-left: 54px;
-    font-weight: 400;
-    font-size: 14px;
-    color: var(--foreground);
-  }
-
-  input::placeholder {
-    color: var(--foreground-light);
-  }
-
   .iconButton {
     display: flex;
     justify-content: center;
@@ -30,12 +14,28 @@
   }
 }
 
+.input input {
+  background-color: var(--surface);
+  border: var(--border);
+  height: 48px;
+  border-radius: 8px;
+  padding: 10px;
+  padding-left: 54px;
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--foreground);
+}
+
+.input input::placeholder {
+  color: var(--foreground-light);
+}
+
 .noIcon {
   .iconButton {
     display: none;
   }
+}
 
-  input {
-    padding-left: 16px;
-  }
+.noIcon input {
+  padding-left: 16px;
 }

@@ -1,13 +1,12 @@
 .searchbar {
-    display: flex;
-    gap: 16px;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding-top: 32px;
-    padding-bottom: 24;
+  display: flex;
+  gap: 16px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 32px;
+  padding-bottom: 24;
+}
 
-    input {
-        width: 280px;
-    }
-
+.searchbar input {
+  width: 280px;
 }
