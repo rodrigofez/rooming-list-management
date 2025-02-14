@@ -4,7 +4,6 @@ import { Input } from "@/components/atoms/input";
 import { DropdownSelect } from "@/components/molecules/dropdown-select";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import styles from "./styles.module.css";
-import { validateDate } from "@/utils/helpers";
 import { SearchIcon } from "./search-icon";
 
 function parseQuery(input: string) {
@@ -85,9 +84,9 @@ export const SearchBar = () => {
       />
       <DropdownSelect
         initialOptions={[
-          { name: "Active", value: 1 },
-          { name: "Closed", value: 2 },
-          { name: "Canceled", value: 3 },
+          { name: "Active", value: "received" },
+          { name: "Closed", value: "completed" },
+          { name: "Canceled", value: "archived" },
         ]}
         initialSelected={initialFilters}
         onSave={handleFilters}

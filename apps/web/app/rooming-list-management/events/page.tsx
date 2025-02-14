@@ -2,30 +2,23 @@ import { Title } from "@/components/atoms/title";
 import { SearchBar } from "@/components/organisms/search-bar";
 import { RoomingLists } from "@/components/templates/rooming-list";
 import styles from "./page.module.css";
-import { validateDate } from "@/utils/helpers";
-import { getRoomingLists } from "@/core/rooming-list-management/application/use-cases/getRoomingLists";
-import { RoomingListRepository } from "@/core/rooming-list-management/infrastructure/repositories/rooming-list.repository";
-import { Search } from "@/core/rooming-list-management/domain/entities/search";
-import { RoomingListWithEvent } from "@/core/rooming-list-management/domain/entities/rooming-list";
+import { api } from "@/lib/api";
 
-const getEventsByEventName = async (search: Search) => {
+export type Search = {
+  query: string;
+  filters: string[];
+};
+
+const getEventsByEventName = async (search: Search): Promise<any> => {
   "use server";
 
-  const roomingLists = await getRoomingLists(new RoomingListRepository())({
-    ...search,
-    after: validateDate(search.after) || "",
-    before: validateDate(search.before) || "",
-  });
+  const params = new URLSearchParams();
+  params.set("query", search.query);
+  if (search.filters.length) params.set("status", search.filters.join(","));
 
-  return roomingLists.reduce(
-    (acc: { [key: string]: RoomingListWithEvent[] }, roomingList) => {
-      acc[roomingList.drl_rfp.event_name] =
-        acc[roomingList.drl_rfp.event_name] || [];
-      acc[roomingList.drl_rfp.event_name].push(roomingList);
-      return acc;
-    },
-    {}
-  );
+  const { data } = await api<any>("rooming-lists?" + params.toString());
+
+  return data;
 };
 
 export default async function Home(props: {
@@ -39,15 +32,11 @@ export default async function Home(props: {
   const searchParams = await props.searchParams;
   const query = searchParams?.query || "";
   const filters =
-    searchParams?.filters?.split(",").map((filter) => Number(filter)) || [];
-  const before = searchParams?.before || "";
-  const after = searchParams?.after || "";
+    searchParams?.filters?.split(",").map((filter) => String(filter)) || [];
 
   const roomingLists = await getEventsByEventName({
     query,
     filters,
-    after,
-    before,
   });
 
   return (

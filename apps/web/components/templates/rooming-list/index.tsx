@@ -1,49 +1,40 @@
 import { Scrollable } from "@/components/atoms/scrollable";
 import { SubTitle } from "@/components/atoms/subtitile";
 import { EventCard } from "@/components/molecules/event-card";
-import { RoomingListWithEvent } from "@/core/rooming-list-management/domain/entities/rooming-list";
 
 import styles from "./styles.module.css";
 import { EmptyState } from "@/components/atoms/empty-state";
 
-export const RoomingLists = async ({
-  roomingLists,
-}: {
-  roomingLists: {
-    [key: string]: RoomingListWithEvent[];
-  };
-}) => {
-  if (!Object.entries(roomingLists).length) return <EmptyState />;
+export const RoomingLists = async ({ roomingLists }: { roomingLists: any }) => {
+  if (!roomingLists.length) return <EmptyState />;
 
-  return Object.entries(roomingLists).map(([event_name, roomingLists], i) => (
-    <section key={event_name} className={styles.roomingList}>
+  return roomingLists.map(({ eventName, roomingLists }, i) => (
+    <section key={eventName} className={styles.roomingList}>
       <SubTitle variant={i % 2 == 0 ? "primary" : "secondary"}>
-        {event_name}
+        {eventName}
       </SubTitle>
-      <Scrollable key={event_name}>
+      <Scrollable key={eventName}>
         {roomingLists.map((roomingList) => (
           <EventCard
-            key={roomingList.id}
-            name={roomingList.drl_rfp.event_internal_name}
+            key={roomingList.roomingListId}
+            name={roomingList.rfpName}
             data={[
               {
                 name: "Agreement",
                 description:
-                  String(roomingList.drl_rfp.agreement_type)
-                    .charAt(0)
-                    .toUpperCase() +
-                  String(roomingList.drl_rfp.agreement_type).slice(1),
+                  String(roomingList.agreement_type).charAt(0).toUpperCase() +
+                  String(roomingList.agreement_type).slice(1),
               },
             ]}
             mainDate={{
-              date: new Date(roomingList.cutoff_date),
+              date: new Date(roomingList.cutOffDate),
               label: "Cut-Off Date",
             }}
             dateRange={{
-              from: new Date(roomingList.min_booking_date),
-              to: new Date(roomingList.max_booking_date),
+              from: new Date(roomingList.minBookingDate),
+              to: new Date(roomingList.maxBookingDate),
             }}
-            primaryActionLabel={`View Bookings (${roomingList.bookings})`}
+            primaryActionLabel={`View Bookings (${roomingList.bookingsCount})`}
           />
         ))}
       </Scrollable>
