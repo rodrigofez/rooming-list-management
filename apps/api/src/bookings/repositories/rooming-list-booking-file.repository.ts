@@ -4,6 +4,11 @@ export class RoomingListBookingFileRepository {
   private fileRepo = new FileSystemRepository('rooming-list-bookings.json');
 
   async getAll() {
-    return await this.fileRepo.read();
+    return await this.fileRepo.read<
+      {
+        roomingListId: number;
+        bookingId: number;
+      }[]
+    >();
   }
 }
