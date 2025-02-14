@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "turbo": "2.4.2"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "docker:up": "turbo run docker:up",
+    "db:migrate": "turbo run db:migrate"
+  },
+  "packageManager": "npm@10.9.2",
+  "workspaces": [
+    "apps/*"
+  ]
+}
