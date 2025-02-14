@@ -1,0 +1,195 @@
+{
+  "id": "71377c74-39e6-47a5-88ca-e0b1ae4ae5c4",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.Bookings": {
+      "name": "Bookings",
+      "schema": "",
+      "columns": {
+        "bookingId": {
+          "name": "bookingId",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "hotelId": {
+          "name": "hotelId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "eventId": {
+          "name": "eventId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "guestName": {
+          "name": "guestName",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "guestPhoneNumber": {
+          "name": "guestPhoneNumber",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "checkInDate": {
+          "name": "checkInDate",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "checkOutDate": {
+          "name": "checkOutDate",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.Rooming_Lists": {
+      "name": "Rooming_Lists",
+      "schema": "",
+      "columns": {
+        "roomingListId": {
+          "name": "roomingListId",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "eventId": {
+          "name": "eventId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "eventName": {
+          "name": "eventName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hotelId": {
+          "name": "hotelId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rfpName": {
+          "name": "rfpName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cutOffDate": {
+          "name": "cutOffDate",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "name": "status",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "agreement_type": {
+          "name": "agreement_type",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.Rooming_List_Bookings": {
+      "name": "Rooming_List_Bookings",
+      "schema": "",
+      "columns": {
+        "roomingListId": {
+          "name": "roomingListId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "bookingId": {
+          "name": "bookingId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Rooming_List_Bookings_roomingListId_Rooming_Lists_roomingListId_fk": {
+          "name": "Rooming_List_Bookings_roomingListId_Rooming_Lists_roomingListId_fk",
+          "tableFrom": "Rooming_List_Bookings",
+          "tableTo": "Rooming_Lists",
+          "columnsFrom": [
+            "roomingListId"
+          ],
+          "columnsTo": [
+            "roomingListId"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "Rooming_List_Bookings_bookingId_Bookings_bookingId_fk": {
+          "name": "Rooming_List_Bookings_bookingId_Bookings_bookingId_fk",
+          "tableFrom": "Rooming_List_Bookings",
+          "tableTo": "Bookings",
+          "columnsFrom": [
+            "bookingId"
+          ],
+          "columnsTo": [
+            "bookingId"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "Rooming_List_Bookings_bookingId_roomingListId_pk": {
+          "name": "Rooming_List_Bookings_bookingId_roomingListId_pk",
+          "columns": [
+            "bookingId",
+            "roomingListId"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
