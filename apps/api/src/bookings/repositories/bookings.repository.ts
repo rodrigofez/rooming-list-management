@@ -3,6 +3,7 @@ import { and, eq, getTableColumns } from 'drizzle-orm';
 import { NeonDatabase } from 'drizzle-orm/neon-serverless';
 import * as schema from '../../db/schema';
 import { DATABASE } from 'src/db/consts';
+import { Booking } from '@repo/schemas';
 
 export class BookingsRepository {
   constructor(
@@ -23,7 +24,7 @@ export class BookingsRepository {
       .where(and(eq(schema.roomingListBookings.roomingListId, roomingListId)));
   }
 
-  async createMany(bookings) {
+  async createMany(bookings: Booking[]) {
     return this.db.insert(schema.bookings).values(
       bookings.map((booking) => ({
         ...booking,

@@ -1,4 +1,5 @@
 import { Inject } from '@nestjs/common';
+import { RoomingList } from '@repo/schemas';
 import {
   and,
   count,
@@ -51,7 +52,7 @@ export class RoomingListRepository {
       .groupBy(roomingList.roomingListId)
       .as('subquery');
 
-    return this.db
+    return await this.db
       .select({
         eventName: subquery.eventName,
         roomingLists: sql`
@@ -75,7 +76,7 @@ export class RoomingListRepository {
       .groupBy(subquery.eventName);
   }
 
-  async createMany(roomingLists) {
+  async createMany(roomingLists: RoomingList[]) {
     return this.db.insert(schema.roomingList).values(
       roomingLists.map((booking) => ({
         ...booking,

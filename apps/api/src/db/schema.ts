@@ -42,10 +42,10 @@ export const roomingListBookings = pgTable(
   'Rooming_List_Bookings',
   {
     roomingListId: integer('roomingListId')
-      .references(() => roomingList.roomingListId)
+      .references(() => roomingList.roomingListId, { onDelete: 'cascade' })
       .notNull(),
     bookingId: integer('bookingId')
-      .references(() => bookings.bookingId)
+      .references(() => bookings.bookingId, { onDelete: 'cascade' })
       .notNull(),
   },
   (t) => [primaryKey({ columns: [t.bookingId, t.roomingListId] })],
