@@ -5,10 +5,12 @@
   "scripts": {
     "dev": "turbo run dev",
     "docker:up": "turbo run docker:up",
-    "db:migrate": "turbo run db:migrate"
+    "db:migrate": "turbo run db:migrate",
+    "db:generate": "turbo run db:generate"
   },
   "packageManager": "npm@10.9.2",
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "packages/*"
   ]
 }

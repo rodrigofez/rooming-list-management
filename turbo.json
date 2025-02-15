@@ -16,6 +16,10 @@
       "db:migrate": {
         "dependsOn": [],
         "cache": false
+      },
+      "db:generate": {
+        "dependsOn": [],
+        "cache": false
       }
     }
   }

@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+      "module": "NodeNext",
+      "target": "ESNext",
+      "declaration": false,
+      "strictNullChecks": true,
+      "alwaysStrict": true
+    },
+  }
+  
