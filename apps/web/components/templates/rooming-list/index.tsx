@@ -4,8 +4,13 @@ import { EventCard } from "@/components/molecules/event-card";
 
 import styles from "./styles.module.css";
 import { EmptyState } from "@/components/atoms/empty-state";
+import { RoomingListsByEventName } from "@repo/schemas";
 
-export const RoomingLists = async ({ roomingLists }: { roomingLists: any }) => {
+export const RoomingLists = async ({
+  roomingLists,
+}: {
+  roomingLists: RoomingListsByEventName;
+}) => {
   if (!roomingLists.length) return <EmptyState />;
 
   return roomingLists.map(({ eventName, roomingLists }, i) => (
@@ -16,6 +21,7 @@ export const RoomingLists = async ({ roomingLists }: { roomingLists: any }) => {
       <Scrollable key={eventName}>
         {roomingLists.map((roomingList) => (
           <EventCard
+            roomingListId={roomingList.roomingListId}
             key={roomingList.roomingListId}
             name={roomingList.rfpName}
             data={[

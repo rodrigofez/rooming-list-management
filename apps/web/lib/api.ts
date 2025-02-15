@@ -1,11 +1,35 @@
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+import { fetchApi } from "@/util/fetchData";
+import {
+  Bookings,
+  RoomingListsByEventName,
+  SearchRoomingLists,
+} from "@repo/schemas";
 
-export async function api<T>(path: string): Promise<T> {
-  const response = await fetch(`${BASE_URL}/${path}`);
+export const getEventsByEventName = async (search: SearchRoomingLists) => {
+  const { data } = await fetchApi<RoomingListsByEventName>(
+    "rooming-lists",
+    "GET",
+    {
+      params: {
+        status: search.filters.join(",") || undefined,
+        query: search.query,
+      },
+    }
+  );
 
-  if (!response.ok) {
-    throw new Error(response.statusText);
-  }
+  return data;
+};
 
-  return (await response.json()) as T;
-}
+export const getBookingsByRoomingList = async (id: number) => {
+  const { data } = await fetchApi<Bookings>(
+    `rooming-lists/${id}/bookings`,
+    "GET"
+  );
+
+  return data;
+};
+
+export const importData = async () => {
+  const { data } = await fetchApi<string>(`data-import`, "POST");
+  return data;
+};

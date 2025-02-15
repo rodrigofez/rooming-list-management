@@ -1,11 +1,15 @@
+"use client";
+
 import React, { FC } from "react";
 import styles from "./styles.module.css";
 import { DateBadge } from "@/components/atoms/date-badge";
 import { Button } from "@/components/atoms/button";
 import { DocumentIcon } from "./document-icon";
 import { CalendarIcon } from "./calendar-icon";
+import { getBookingsByRoomingList } from "@/lib/api";
 
 type EventCardProps = {
+  roomingListId: number;
   name: string;
   data: { name: string; description: string }[];
   mainDate: {
@@ -20,6 +24,7 @@ type EventCardProps = {
 };
 
 export const EventCard: FC<EventCardProps> = ({
+  roomingListId,
   name = "",
   data = [],
   mainDate = {
@@ -40,6 +45,11 @@ export const EventCard: FC<EventCardProps> = ({
     day: "2-digit",
     year: "numeric",
   })}`;
+
+  const handleViewBookings = async () => {
+    const bookings = await getBookingsByRoomingList(roomingListId);
+    console.log(bookings);
+  };
 
   return (
     <div className={styles.cardContainer}>
@@ -66,6 +76,7 @@ export const EventCard: FC<EventCardProps> = ({
           style={{ width: "100%" }}
           variant="primary"
           title={primaryActionLabel}
+          onClick={handleViewBookings}
         />
         <Button
           variant="outline"
