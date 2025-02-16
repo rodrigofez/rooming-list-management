@@ -4,27 +4,27 @@
   <h1 align="center">Rooming List Management App</h1>
 </div>
 
-https://rooming-list-management.vercel.app/
+WEB: https://rooming-list-management.vercel.app/
+
+API: https://rooming-list-management.onrender.com/
+
 
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
 
-![Product Screen Shot](preview.gif)
+![Product Screen Shot](preview-web.png)
 
 
 
 
 ### Built With
 
-The tech stack used for this application is Typescript as the language, NextJS, Drizzle ORM and PostgreSQL.
-
-### Search
-![Product Screen Shot](preview.png)
-
-The search bar bring results upon matching event name, RFP Name (event_internal_name), cut-off dates, and agreement type (staff, leisure, etc).
-
-To search by cut-off date you can use the keywords `after:` and `before:`, following by a valid date in a `YYYY-MM-DD`, `YYYY-MM` or `YYYY` format
+- NextJS
+- Turbopack
+- NestJS
+- Drizzle ORM
+- PostgreSQL
 
 <!-- GETTING STARTED -->
 
@@ -35,7 +35,7 @@ To search by cut-off date you can use the keywords `after:` and `before:`, follo
 
 To run the project you need the following:
 
-- `node` version greater or equal to `v18.00`
+- `node` version greater or equal to `v20.11.1`
 - Docker
 
 
@@ -43,11 +43,15 @@ To run the project you need the following:
 
 1. Clone the repo
 
-2. Go to the root of the project and install NPM packages
+2. From the root of the repo run the following command to install NPM packages
    ```sh
    npm install
    ```
-3. Create a `.env` and add set your postgresql connection string as the DATABASE_URL environment (you can just rename `.env.example` to `.env`) 
+3. The `web` and `api` are located inside the `apps` directory, as a next step rename both `.env.example` located in `apps/web` and `apps/api` to `.env`:
+    ```sh
+   cp apps/web/.env.example apps/web/.env
+   cp apps/api/.env.example apps/web/.env
+   ```
 3. Run the following command to start a postgresql instance with docker compose (make sure docker is running)
    ```sh
    npm run docker:up
@@ -56,11 +60,7 @@ To run the project you need the following:
    ```sh
    npm run db:migrate
    ```
-5. As a next step you need to seed the database
-   ```sh
-   npm run db:seed
-   ```
-6. Finally you can run the NextJS project
+6. Finally you can run both apps with the following command
    ```sh
    npm run dev
    ```
