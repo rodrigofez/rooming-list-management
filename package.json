@@ -4,6 +4,7 @@
   },
   "scripts": {
     "dev": "turbo run dev",
+    "build": "turbo run build",
     "docker:up": "turbo run docker:up",
     "db:migrate": "turbo run db:migrate",
     "db:generate": "turbo run db:generate"

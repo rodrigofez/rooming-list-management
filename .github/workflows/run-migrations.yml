@@ -3,7 +3,7 @@ name: Run DB Migrations
 on:
   push:
     paths:
-      - "drizzle/migrations/**"
+      - "apps/api/src/db/migrations/**"
     branches:
       - main
   workflow_dispatch:
@@ -22,9 +22,11 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
+        working-directory: ./apps/api
         run: npm ci
 
       - name: Run DB migrations
+        working-directory: ./apps/api
         run: npm run db:migrate
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}

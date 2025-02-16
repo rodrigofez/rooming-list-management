@@ -11,7 +11,7 @@
     "start": "nest start",
     "dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
+    "start:prod": "node dist/src/main",
     "docker:up": "docker-compose up -d",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
@@ -37,7 +37,8 @@
     "pg": "^8.13.3",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
-    "ws": "^8.18.0"
+    "ws": "^8.18.0",
+    "drizzle-kit": "^0.30.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
@@ -53,7 +54,6 @@
     "@types/pg": "^8.11.11",
     "@types/supertest": "^6.0.2",
     "@types/ws": "^8.5.14",
-    "drizzle-kit": "^0.30.4",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.2",
