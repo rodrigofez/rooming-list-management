@@ -50,7 +50,7 @@ To run the project you need the following:
 3. The `web` and `api` are located inside the `apps` directory, as a next step rename both `.env.example` located in `apps/web` and `apps/api` to `.env`:
     ```sh
    cp apps/web/.env.example apps/web/.env
-   cp apps/api/.env.example apps/web/.env
+   cp apps/api/.env.example apps/api/.env
    ```
 3. Run the following command to start a postgresql instance with docker compose (make sure docker is running)
    ```sh
